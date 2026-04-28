@@ -931,7 +931,7 @@
           "The overdrive <strong>collapses</strong>.<br>",
       };
 
-      let seq = [],
+      let sequence = [],
         curIdx = 0,
         gameActive = false;
       let timerRAF = null,
@@ -979,7 +979,7 @@
       }
 
       function buildSeq() {
-        seq = Array.from(
+        sequence = Array.from(
           { length: SEQ_LEN },
           () => ALL_BTNS[Math.floor(Math.random() * ALL_BTNS.length)],
         );
@@ -988,7 +988,7 @@
       function renderSeq() {
         const row = $("seqRow");
         row.innerHTML = "";
-        seq.forEach((b, i) => {
+        sequence.forEach((b, i) => {
           const el = document.createElement("div");
           const isSh = ["L1", "L2", "R1", "R2"].includes(b);
           const state = i < curIdx ? "done" : i === curIdx ? "cur" : "dim";
@@ -1031,13 +1031,13 @@
       function handleInput(b) {
         if (!gameActive) return;
         litBtn(b);
-        if (b === seq[curIdx]) handleCorrect();
+        if (b === sequence[curIdx]) handleCorrect();
         else handleWrong();
       }
 
       function handleCorrect() {
         vibe(25);
-        particles(6, COLORS[seq[curIdx]]);
+        particles(6, COLORS[sequence[curIdx]]);
         const pip = $(`pip-${curIdx}`);
         if (pip) pip.classList.add("done");
         curIdx++;
