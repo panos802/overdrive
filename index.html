@@ -978,14 +978,14 @@
         setTimeout(() => el.classList.remove("lit"), 170);
       }
 
-      function buildSeq() {
+      function buildSequence() {
         sequence = Array.from(
           { length: SEQ_LEN },
           () => ALL_BTNS[Math.floor(Math.random() * ALL_BTNS.length)],
         );
       }
 
-      function renderSeq() {
+      function renderSequence() {
         const row = $("seqRow");
         row.innerHTML = "";
         sequence.forEach((b, i) => {
@@ -1036,7 +1036,7 @@
       }
 
       function handleCorrect() {
-        vibe(25);
+        vibe([25]);
         particles(6, COLORS[sequence[curIdx]]);
         const pip = $(`pip-${curIdx}`);
         if (pip) pip.classList.add("done");
@@ -1045,7 +1045,7 @@
           endGame(true);
           return;
         }
-        renderSeq();
+        renderSequence();
       }
 
       function handleWrong() {
@@ -1088,14 +1088,14 @@
         gameActive = false;
         $("clock").textContent = "8.0";
         $("clock").classList.remove("urgent");
-        buildSeq();
-        renderSeq();
+        buildSequence();
+        renderSequence();
         renderPips();
         showScreen("s-game");
         setTimeout(() => {
           gameActive = true;
           startTimer();
-          vibe(30);
+          vibe([30]);
         }, 500);
       }
 
