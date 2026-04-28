@@ -918,8 +918,8 @@
         R2: "inp-R2",
       };
 
-      const SEQ_LEN = 8,
-        TIME_LIMIT = 8000;
+      const SEQ_LEN = 8;
+      const TIME_LIMIT = 6500;
 
       const SUCCESS = {
         label: "SUCCESS",
@@ -942,7 +942,7 @@
       function showScreen(id) {
         document
           .querySelectorAll(".screen")
-          .forEach((s) => s.classList.add("hidden"));
+          .forEach((screen) => screen.classList.add("hidden"));
         $(id).classList.remove("hidden");
       }
       function vibe(p) {
@@ -951,23 +951,28 @@
       function doFlash() {
         const e = $("flash");
         e.classList.remove("go");
-        void e.offsetWidth;
+        void e.offsetWidth; // force reflow
         e.classList.add("go");
       }
 
       function particles(n, color) {
-        const c = $("parts"),
-          cx = innerWidth / 2,
-          cy = innerHeight / 2;
+        const particlesContainer = $("parts");
+        const cx = innerWidth / 2;
+        const cy = innerHeight / 2;
+
         for (let i = 0; i < n; i++) {
-          const p = document.createElement("div");
-          p.className = "part";
-          const a = Math.random() * Math.PI * 2,
-            d = 70 + Math.random() * 200;
-          const dur = (0.5 + Math.random() * 0.9).toFixed(2) + "s";
-          p.style.cssText = `left:${cx}px;top:${cy}px;background:${color};--tx:${Math.cos(a) * d}px;--ty:${Math.sin(a) * d}px;--d:${dur}`;
-          c.appendChild(p);
-          setTimeout(() => p.remove(), 1500);
+          const particle = document.createElement("div");
+          particle.className = "part";
+          
+          const a = Math.random() * Math.PI * 2;
+          const d = 70 + Math.random() * 200;
+
+          const duration = (0.5 + Math.random() * 0.9).toFixed(2) + "s";
+          
+          particle.style.cssText = `left:${cx}px;top:${cy}px;background:${color};--tx:${Math.cos(a) * d}px;--ty:${Math.sin(a) * d}px;--d:${duration}`;
+          particlesContainer.appendChild(particle);
+          
+          setTimeout(() => particle.remove(), 1500);
         }
       }
 
@@ -1102,18 +1107,18 @@
       $("btnStart").addEventListener("click", startGame);
       $("btnAgain").addEventListener("click", () => showScreen("s-title"));
 
-      ALL_BUTTONS.forEach((btn) => {
-        const el = $(INPUT_ID[btn]);
+      ALL_BUTTONS.forEach((button) => {
+        const el = $(INPUT_ID[button]);
         if (!el) return;
         el.addEventListener(
           "touchstart",
           (e) => {
             e.preventDefault();
-            handleInput(btn);
+            handleInput(button);
           },
           { passive: false },
         );
-        el.addEventListener("mousedown", () => handleInput(btn));
+        el.addEventListener("mousedown", () => handleInput(button));
       });
 
       document.addEventListener("touchmove", (e) => e.preventDefault(), {
