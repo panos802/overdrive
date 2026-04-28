@@ -46,7 +46,7 @@
         --gold-b: #f0b84a;
         --ember: #e06010;
         --text: #e8dcc8;
-        --dim: #4a4030;
+        --dim: #d7bb8f;
         --cross: #5b9bd5;
         --circle: #cc4444;
         --square: #cc44aa;
@@ -191,7 +191,7 @@
         filter: drop-shadow(0 0 16px #c9933a66);
       }
       .t-sub {
-        font-size: 0.62rem;
+        font-size: 0.9rem;
         letter-spacing: 0.45em;
         color: var(--dim);
       }
@@ -226,7 +226,7 @@
         margin-bottom: 0.6rem;
       }
       .g-lbl {
-        font-size: 0.55rem;
+        font-size: 0.7rem;
         letter-spacing: 0.5em;
         color: var(--dim);
         margin-bottom: 0.2rem;
@@ -272,11 +272,11 @@
         }
       }
       .clock-label {
-        font-size: 0.55rem;
+        font-size: 0.7rem;
         letter-spacing: 0.3em;
         color: var(--dim);
         align-self: flex-end;
-        padding-bottom: 0.35rem;
+        padding-bottom: 1.2rem;
       }
 
       /* ── SEQUENCE ── */
@@ -308,12 +308,12 @@
       .sq.sh {
         border-radius: 5px;
         font-family: "Share Tech Mono", monospace;
-        font-size: 0.65rem;
+        font-size: 0.7rem;
         width: 34px;
         height: 22px;
       }
       .sq.dim {
-        opacity: 0.13;
+        opacity: 0.40;
       }
       .sq.cur {
         opacity: 1;
@@ -469,7 +469,7 @@
         grid-template-columns: 44px 1fr 12px 1fr 44px;
         grid-template-rows: 32px auto;
         gap: 5px;
-        margin: 0 auto;
+        margin: 40px 0 auto;
       }
       .sh-btn {
         background: #0d0d1a;
@@ -509,6 +509,7 @@
         grid-row: 2;
         align-self: start;
         height: 32px;
+        align-self: flex-end;
       }
       .sh-r1 {
         color: var(--r1);
@@ -525,6 +526,7 @@
         grid-row: 2;
         align-self: start;
         height: 32px;
+        align-self: flex-end;
       }
       .sh-l1.lit {
         background: var(--l1) 33;
@@ -680,7 +682,7 @@
         z-index: 1;
       }
       .r-sub {
-        font-size: 0.62rem;
+        font-size: 0.8rem;
         letter-spacing: 0.5em;
         color: var(--dim);
       }
@@ -803,7 +805,7 @@
       </div>
 
       <div class="countdown-wrap">
-        <div class="clock-digits" id="clock">8.0</div>
+        <div class="clock-digits" id="clock"></div>
         <div class="clock-label">SEC</div>
       </div>
 
@@ -976,7 +978,7 @@
         }
       }
 
-      function litBtn(b) {
+      function litButton(b) {
         const el = $(INPUT_ID[b]);
         if (!el) return;
         el.classList.add("lit");
@@ -1035,7 +1037,7 @@
 
       function handleInput(b) {
         if (!gameActive) return;
-        litBtn(b);
+        litButton(b);
         if (b === sequence[curIdx]) handleCorrect();
         else handleWrong();
       }
@@ -1091,7 +1093,7 @@
       function startGame() {
         curIdx = 0;
         gameActive = false;
-        $("clock").textContent = "8.0";
+        $("clock").textContent = `${TIME_LIMIT / 1000}`;
         $("clock").classList.remove("urgent");
         buildSequence();
         renderSequence();
