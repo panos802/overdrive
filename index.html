@@ -847,7 +847,7 @@
     </div>
 
     <script>
-      const ALL_BTNS = [
+      const ALL_BUTTONS = [
         "cross",
         "circle",
         "square",
@@ -861,7 +861,7 @@
         "R1",
         "R2",
       ];
-      const SYM = {
+      const SYMBOLS = {
         cross: "✕",
         circle: "○",
         square: "□",
@@ -981,7 +981,7 @@
       function buildSequence() {
         sequence = Array.from(
           { length: SEQ_LEN },
-          () => ALL_BTNS[Math.floor(Math.random() * ALL_BTNS.length)],
+          () => ALL_BUTTONS[Math.floor(Math.random() * ALL_BUTTONS.length)],
         );
       }
 
@@ -994,7 +994,7 @@
           const state = i < curIdx ? "done" : i === curIdx ? "cur" : "dim";
           el.className = `sq ${SQCLS[b]} ${state}${isSh ? " sh" : ""}`;
           el.id = `sq-${i}`;
-          el.textContent = SYM[b];
+          el.textContent = SYMBOLS[b];
           row.appendChild(el);
         });
       }
@@ -1102,7 +1102,7 @@
       $("btnStart").addEventListener("click", startGame);
       $("btnAgain").addEventListener("click", () => showScreen("s-title"));
 
-      ALL_BTNS.forEach((btn) => {
+      ALL_BUTTONS.forEach((btn) => {
         const el = $(INPUT_ID[btn]);
         if (!el) return;
         el.addEventListener(
