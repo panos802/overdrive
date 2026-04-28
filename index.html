@@ -889,7 +889,7 @@
         R1: "sr1",
         R2: "sr2",
       };
-      const COL = {
+      const COLORS = {
         cross: "#5b9bd5",
         circle: "#cc4444",
         square: "#cc44aa",
@@ -1037,7 +1037,7 @@
 
       function handleCorrect() {
         vibe(25);
-        particles(6, COL[seq[curIdx]]);
+        particles(6, COLORS[seq[curIdx]]);
         const pip = $(`pip-${curIdx}`);
         if (pip) pip.classList.add("done");
         curIdx++;
