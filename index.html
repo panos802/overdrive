@@ -903,7 +903,7 @@
         R1: "#cc8844",
         R2: "#aa5522",
       };
-      const INPID = {
+      const INPUT_ID = {
         cross: "inp-cross",
         circle: "inp-circle",
         square: "inp-square",
@@ -972,7 +972,7 @@
       }
 
       function litBtn(b) {
-        const el = $(INPID[b]);
+        const el = $(INPUT_ID[b]);
         if (!el) return;
         el.classList.add("lit");
         setTimeout(() => el.classList.remove("lit"), 170);
@@ -1103,7 +1103,7 @@
       $("btnAgain").addEventListener("click", () => showScreen("s-title"));
 
       ALL_BTNS.forEach((btn) => {
-        const el = $(INPID[btn]);
+        const el = $(INPUT_ID[btn]);
         if (!el) return;
         el.addEventListener(
           "touchstart",
